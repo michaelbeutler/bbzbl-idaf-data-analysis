@@ -14585,19 +14585,23 @@ a.anchor-link {
 <span class="k">def</span> <span class="nf">save_diagram</span><span class="p">(</span><span class="n">diagram</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;./diagrams&#39;</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">&#39;./diagrams&#39;</span><span class="p">)</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">hist</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">diagram</span><span class="p">,</span> <span class="s1">&#39;flatten&#39;</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">diagram</span><span class="o">.</span><span class="n">flatten</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">diagram</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>  <span class="n">transparent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">save_hist</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
     <span class="n">save_diagram</span><span class="p">(</span>
-        <span class="n">hist</span><span class="p">,</span> <span class="s1">&#39;./diagrams/</span><span class="si">{name}</span><span class="s1">hist.png&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">))</span>
+        <span class="n">diagram</span><span class="o">=</span><span class="n">hist</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;./diagrams/</span><span class="si">{name}</span><span class="s1">hist.png&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">))</span>
 
 
-<span class="k">def</span> <span class="nf">save_boxplot</span><span class="p">(</span><span class="n">hist</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-    <span class="n">save_diagram</span><span class="p">(</span>
-        <span class="n">hist</span><span class="p">,</span> <span class="s1">&#39;./diagrams/</span><span class="si">{name}</span><span class="s1">boxplot.png&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">save_boxplot</span><span class="p">(</span><span class="n">boxplot</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="n">save_diagram</span><span class="p">(</span><span class="n">diagram</span><span class="o">=</span><span class="n">boxplot</span><span class="p">,</span>
+                 <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;./diagrams/</span><span class="si">{name}</span><span class="s1">boxplot.png&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">))</span>
 </pre></div>
 
      </div>
